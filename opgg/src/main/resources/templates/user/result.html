@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{user/layout/default}">
+<head>
+<style type="text/css">
+	div {
+		display: block;
+	}
+	
+	.total {
+		position: relative;
+	}
+	
+	.wrapper {
+		position: relative;
+		z-index: 2;
+	}
+	
+	div.level {
+		height: 20px;
+		margin-top: -11px;
+		text-align: center;
+	}
+	
+	span.level {
+		display: inline-block;
+		line-height: 20px;
+		padding: 0 8px;
+		font-size: 12px;
+		border-radius: 10px;
+		color: #FFF;
+		background-color: #202D37;
+		font-family: "Roboto", sans-serif;
+	}
+	
+	.profile-icon img {
+		border-radius: 20px;
+		width: 100px;
+		height: 100px;
+	}
+	
+	img {
+		border: 0px;
+	    vertical-align: middle;
+	    max-width: 100%;
+	    overflow-clip-margin: content-box;
+    	overflow: clip;
+	}	
+	
+	.header-profile-info {
+		padding: 10px 10px 16px 0;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
+		box-sizing: border-box;
+	}
+	
+	.info {
+		-webkit-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
+		margin-left: 24px;
+		box-sizing: border-box;
+	}
+	
+	.summonerName {
+		margin-right: 8px;
+		font-size: 24px;
+	}
+	
+	.info>.name {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-align-items: center;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: 32px;
+		font-size: 24px;
+		font-weight: bold;
+		color: #202D37;
+		color: var(- -gray900);
+	}
+</style>
+</head>
+<th:block layout:fragment="customContents">
+	<div class="container">
+		<div class="total mt-5">
+			<div class="wrapper">
+				<div class="header-profile-info">
+					<div class="profile-icon">
+						<img alt="profile image" th:src=${imgURL}>
+						<div class="level">
+							<span class="level">[[${temp.summonerLevel}]]</span>
+						</div>
+					</div>
+					<div class="info">
+						<div class="name">
+							<h1 class="summonerName">[[${temp.name}]]</h1>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div>
+					<span>솔로랭크</span>
+					<div>
+						<img alt="tier image" th:src="${tierImgURL}">
+						<p>[[${temp2.tier}]] [[${temp2.rank}]]</p>
+						<p>[[${temp2.leaguePoints}]] LP</p>
+						<p>[[${temp2.wins}]] 승 [[${temp2.losses}]] 패</p>
+						<p>승률 [[${temp2.odds}]]%</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>
