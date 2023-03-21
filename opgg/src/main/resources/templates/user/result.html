@@ -88,12 +88,70 @@
 		color: #202D37;
 		color: var(- -gray900);
 	}
+	
+	.rank .header {
+		display: flex;
+	    -webkit-box-pack: justify;
+	    justify-content: space-between;
+	    line-height: 35px;
+	    padding: 0px 12px;
+	    font-size: 14px;
+	    color: var(--gray900);
+	}
+	
+	.rank .content {
+		display: flex;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    padding: 12px;
+	    border-top-width: 1px;
+	    border-top-style: solid;
+	    border-color: gray;
+	}
+	
+	.rank .content img {
+		background-color: var(--gray100);
+   		border-radius: 50%;
+	}
+	
+	.rank > .content .info .tier {
+		line-height: 26px;
+	    font-size: 20px;
+	    font-weight: bold;
+	    text-transform: capitalize;
+	    color: var(--gray900);
+	    font-family: Roboto, sans-serif;
+	}
+	
+	.rank > .content .info .lp {
+		line-height: 16px;
+	    margin-top: 2px;
+	    font-size: 12px;
+	    color: var(--gray500);
+	    font-family: Roboto, sans-serif;
+	}
+	
+	.rank > .content .win-lose-container {
+		font-size: 12px;
+	    text-align: right;
+	    color: var(--gray400);
+	}
+	
+	.rank > .content .win-lose-container .win-lose {
+	    line-height: 26px;
+	}
+	
+	.rank > .content .win-lose-container .ratio {
+		margin-top: 2px;
+	    line-height: 16px;
+	}
+	
 </style>
 </head>
 <th:block layout:fragment="customContents">
 	<div class="container">
 		<div class="total mt-5">
-			<div class="wrapper">
+			<div class="wrapper"> 
 				<div class="header-profile-info">
 					<div class="profile-icon">
 						<img alt="profile image" th:src=${imgURL}>
@@ -108,14 +166,50 @@
 					</div>
 				</div>
 				<hr>
-				<div>
-					<span>솔로랭크</span>
-					<div>
-						<img alt="tier image" th:src="${tierImgURL}">
-						<p>[[${temp2.tier}]] [[${temp2.rank}]]</p>
-						<p>[[${temp2.leaguePoints}]] LP</p>
-						<p>[[${temp2.wins}]] 승 [[${temp2.losses}]] 패</p>
-						<p>승률 [[${temp2.odds}]]%</p>
+				<div class="col-12">
+					<div class="rank col-4">
+						<div class="card mb-2">
+							<div class="header">솔로랭크</div>
+							<div class="content">
+								<div style="position: relative">
+									<img alt="솔로랭크" th:src="${tierImgURL1}" style="width: 100px;">
+								</div>
+								<div class="info">
+									<div class="tier">[[${temp2.tier}]] [[${temp2.rank}]]</div>
+									<div class="lp">[[${temp2.leaguePoints}]] LP</div>
+								</div>
+								<div class="win-lose-container">
+									<div class="win-lose">[[${temp2.wins}]] 승 [[${temp2.losses}]] 패</div>
+									<div class="ratio">승률 [[${temp2.odds}]]%</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="card mt-2">
+							<div class="header">자유랭크</div>
+							<div class="content">
+								<div style="position: relative">
+									<img alt="자유랭크" th:src="${tierImgURL2}" style="width: 72px;">
+								</div>
+								<div class="info">
+									<div class="tier">[[${temp3.tier}]] [[${temp3.rank}]]</div>
+									<div class="lp">[[${temp3.leaguePoints}]] LP</div>
+								</div>
+								<div class="win-lose-container">
+									<div class="win-lose">[[${temp3.wins}]] 승 [[${temp3.losses}]] 패</div>
+									<div class="ratio">승률 [[${temp3.odds}]]%</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-8">
+						<div class="card">
+							<div>
+								<div class="card">
+								
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
