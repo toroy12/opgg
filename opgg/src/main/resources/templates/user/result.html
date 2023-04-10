@@ -150,7 +150,7 @@
 </head>
 <th:block layout:fragment="customContents">
 	<div class="container">
-		<div class="total mt-5">
+		<div class="total my-5" style="min-height: 600px">
 			<div class="wrapper"> 
 				<div class="header-profile-info">
 					<div class="profile-icon">
@@ -163,6 +163,7 @@
 						<div class="name">
 							<h1 class="summonerName">[[${temp.name}]]</h1>
 						</div>
+						<a class="btn" style="background-color: #5383E3; color: white">전적 갱신</a>
 					</div>
 				</div>
 				<hr>
@@ -170,7 +171,7 @@
 					<div class="rank col-4">
 						<div class="card mb-2">
 							<div class="header">솔로랭크</div>
-							<div class="content">
+							<div class="content" th:if="${temp2 != null}">
 								<div style="position: relative">
 									<img alt="솔로랭크" th:src="${tierImgURL1}" style="width: 100px;">
 								</div>
@@ -183,11 +184,19 @@
 									<div class="ratio">승률 [[${temp2.odds}]]%</div>
 								</div>
 							</div>
+							<div class="content" th:unless="${temp2 != null}">
+								<div style="position: relative">
+									<img alt="솔로랭크" th:src="${tierImgURL1}" style="width: 100px;">
+								</div>
+								<div class="info">
+									<div class="tier"><b>UNLANKED</b></div>
+								</div>
+							</div>
 						</div>
 						
 						<div class="card mt-2">
 							<div class="header">자유랭크</div>
-							<div class="content">
+							<div class="content" th:if="${temp3 != null}">
 								<div style="position: relative">
 									<img alt="자유랭크" th:src="${tierImgURL2}" style="width: 72px;">
 								</div>
@@ -200,13 +209,12 @@
 									<div class="ratio">승률 [[${temp3.odds}]]%</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-8">
-						<div class="card">
-							<div>
-								<div class="card">
-								
+							<div class="content" th:unless="${temp3 != null}">
+								<div style="position: relative">
+									<img alt="자유랭크" th:src="${tierImgURL2}" style="width: 72px;">
+								</div>
+								<div class="info">
+									<div class="tier"><b>UNLANKED</b></div>
 								</div>
 							</div>
 						</div>

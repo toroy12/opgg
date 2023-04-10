@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<div th:fragment="naviFragments">
-	    <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" th:href="@{/}">OP.GG</a>
-            </div>
-        </nav>
+	    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5383E3">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}" style="font-size: 20px; font-weight: 900; color: white">OP.GG</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a id="coBtn" class="nav-link" th:href="@{/community}" style="color: #B3CDFF">커뮤니티</a>
+        </li>
+      </ul>
+      <form class="d-flex" action="/search" method="get">
+	      <div class="input-group">
+	        <input class="form-control" type="search" name="summonerName" aria-label="Search" style="border: 1px solid white;" required>
+	        <button class="btn" type="submit" style="background-color: white; color: #5383E3; font-size: 15px; font-weight: 900;">.GG</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</nav>
 	</div>
 </html>
