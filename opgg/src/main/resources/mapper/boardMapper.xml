@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gg.op.mapper.BoardMapper">
+	<resultMap type="Community" id="communityResultMap">
+		<id property="boardCode" column="board_code" />
+		<result property="title" column="title" />
+		<result property="author" column="author" />
+		<result property="content" column="content" />
+		<result property="createDate" column="create_date" />
+	</resultMap>
+	
+	<select id="boardList" resultMap="communityResultMap">
+		SELECT
+			 b.board_code
+			,b.title
+			,b.author
+			,b.content
+			,b.create_date
+		FROM
+			board AS b
+		<where>
+			<if test="searchValue != null and searchValue != ''">		
+				b.content LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+		</where>
+		ORDER BY
+			b.board_code DESC
+		<if test="startIndex != null and startIndex > -1">
+			LIMIT #{startIndex}, #{pageSize};
+		</if>
+	</select>
+	
+	<insert id="addBoard" parameterType="String">
+		INSERT INTO 
+			board(title, content, create_date)
+		VALUES
+			(
+				#{title},#{content}, NOW()
+			);
+	</insert>
+	
+	<select id="detailBoard" resultMap="communityResultMap">
+		SELECT
+			 b.board_code
+			,b.title
+			,b.author
+			,b.content
+			,b.create_date
+		FROM
+			board b
+		WHERE
+			b.board_code = #{boardCode};
+	</select>
+	
+	<delete id="removeBoard">
+		DELETE FROM 
+			board b 
+		WHERE 
+			b.board_code = #{boardCode};
+	</delete>
+	
+	<update id="modifyBoard">
+		UPDATE 
+			board b 
+		SET 
+			b.title = #{title},
+			b.content = #{content} 
+		WHERE 
+			b.board_code = #{boardCode}; 
+	</update>
+	
+	<select id="boardListCnt" resultType="int">
+		SELECT 
+			COUNT(b.board_code) 
+		FROM 
+			board b
+		<where>
+			<if test="searchValue != null and searchValue != ''">		
+				b.content LIKE CONCAT('%', #{searchValue}, '%')
+			</if>
+		</where>
+	</select>
+</mapper>

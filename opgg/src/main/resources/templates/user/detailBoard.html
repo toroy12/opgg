@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{user/layout/default}">
+<th:block layout:fragment="customContents">
+	<div class="container">
+		<div class="my-5">
+			<h2>[[${detailBoard.title}]]</h2>
+			<span>[[${detailBoard.author}]]&nbsp;&nbsp;&nbsp;&nbsp;[[${detailBoard.createDate}]]</span>
+			<hr>
+			<p style="white-space: pre-line; min-height: 45vh">[[${detailBoard.content}]]</p>
+			<hr>
+			<div style="text-align: right">
+				<a th:href="@{/community}" class="btn btn-light">목록</a>
+				<a id="modifyBtn" th:href="@{/modifyCommunity(boardCode=${detailBoard.boardCode})}" class="btn btn-info">수정</a>
+				<a id="removeBtn" th:href="@{/removeCommunity(boardCode=${detailBoard.boardCode})}" class="btn btn-danger">삭제</a>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

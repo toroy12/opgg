@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{user/layout/default}">
+<th:block layout:fragment="customContents">
+	<div class="container">
+		<div class="mt-5" style="min-height: 680px">
+			<form action="community" method="get">
+				<div class="input-group mb-3" style="justify-content: end">
+						<input type="text" maxlength="50" name="searchValue" placeholder="제목을 입력해주세요." style="border: 1px solid black">
+						<button class="btn btn-outline-dark" type="submit">검색</button>
+				</div>
+			</form>
+			<table class="table col-12" style="text-align: center;"> 
+				<thead>
+					<tr>
+						<th scope="col" class="col-2">번호</th>
+						<th scope="col" class="col-5">제목</th>
+						<th scope="col" class="col-2">글쓴이</th>
+						<th scope="col" class="col-3">작성일</th>
+					</tr>
+				</thead>	
+				<tbody>
+					<tr th:each="co : ${community}">
+						<td>[[${co.boardCode}]]</td>
+						<td><a th:text="${co.title}" th:href="@{/detailCommunity(boardCode=${co.boardCode})}" style="text-decoration: none"></a></td>
+						<td>[[${co.author}]]</td>
+						<td>[[${co.createDate}]]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			 <div class="row">
+				<div class="col-sm-12" id="pg">
+					<div class="text-center">
+						<ul class="pagination" style="justify-content: center">
+							<li th:if="${pagination.curPage != 1}" class="page-item">
+								<a th:href="@{/community(searchValue=${search.searchValue}, curPage=${pagination.prevPage})}" aria-label="Prev" class="page-link"> <span aria-hidden="true">&#60;</span></a>
+							</li>
+							<li th:unless="${pagination.curPage != 1}" class="page-item disabled">
+								<span aria-label="Prev" class="page-link" tabindex="-1" aria-disabled="true"> <span aria-hidden="true">&#60;</span></span>
+							</li>
+							
+							<th:block th:each="pageNum : ${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+								<li class="page-item active" aria-current="page" th:if="${pageNum == pagination.curPage}">
+									<span th:text="${pageNum}" class="page-link"></span>
+								</li>
+								<li th:unless="${pageNum == pagination.curPage} or ${pagination.listCnt == 0}" class="page-item">
+									<a th:href="@{/community(searchValue=${search.searchValue}, curPage=${pageNum})}" th:text="${pageNum}" class="page-link"></a>
+								</li>
+							</th:block>
+
+							<li th:if="${pagination.curPage != pagination.pageCnt && pagination.pageCnt > 0}" class="page-item">
+								<a th:href="@{/community(searchValue=${search.searchValue}, curPage=${pagination.nextPage})}" aria-label="Next" class="page-link"> <span aria-hidden="true">&#62;</span></a>
+							</li>
+							<li th:unless="${pagination.curPage != pagination.pageCnt && pagination.pageCnt > 0}" class="page-item disabled">
+								<span aria-label="Next" class="page-link" tabindex="-1" aria-disabled="true"><span aria-hidden="true">&#62;</span></span>
+							</li>
+						</ul>
+					<div style="position:absolute; left: 76%; top: 80%;">
+						<a th:href="@{/addCommunity}" class="btn btn-light">작성</a>
+					</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</th:block>
+</html>

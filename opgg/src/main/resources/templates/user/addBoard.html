@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{user/layout/default}">
+<th:block layout:fragment="customContents">
+	<div class="container">
+		<div class="my-5">
+			<form action="/addCommunity" method="post">
+				<a class="btn btn-light" th:href="@{/community}" style="float: left">목록</a>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>
+									<input type="text" size="160" name="title" maxlength="50" placeholder="제목을 입력해주세요." style="font-size: 16px" required>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<textarea cols="160" rows="22" name="content" maxlength="500" placeholder="내용을 입력해주세요." style="font-size: 16px" required></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="file">
+					<button type="submit" class="btn btn-light" style="float: right">작성</button>
+			</form>
+		</div>
+	</div>
+</th:block>
+</html>
