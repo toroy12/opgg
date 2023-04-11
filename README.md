@@ -1,6 +1,6 @@
 # opgg
 # 메인화면
-![1](https://user-images.githubusercontent.com/96565041/230986410-025b6a67-2952-4462-8f3f-7bd071185d5b.JPG)
+![1](https://user-images.githubusercontent.com/96565041/231062826-acb6c945-d628-4937-b99f-f63b683e03f6.JPG)
 # 전적검색화면
 ![2](https://user-images.githubusercontent.com/96565041/230986414-96370141-63f8-4f7f-a9b4-f58cd691af72.JPG)
 # 커뮤니티화면
